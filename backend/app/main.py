@@ -9,7 +9,7 @@ import logging
 from app.config import settings, database, redis_client
 
 # Import API routes
-from app.api.v1 import auth, gateway, analytics, users, departments
+from app.api.v1 import auth, gateway, analytics, users, departments, ai_insights
 
 # Import core utilities
 from app.core.logging import setup_logging
@@ -49,6 +49,7 @@ app.include_router(gateway.router, prefix=f"{settings.API_V1_STR}/gateway", tags
 app.include_router(analytics.router, prefix=f"{settings.API_V1_STR}/analytics", tags=["Analytics"])
 app.include_router(users.router, prefix=f"{settings.API_V1_STR}/users", tags=["User Management"])
 app.include_router(departments.router, prefix=f"{settings.API_V1_STR}/departments", tags=["Department Management"])
+app.include_router(ai_insights.router, prefix=f"{settings.API_V1_STR}/ai-insights", tags=["AI Insights"])
 
 
 @app.on_event("startup")
