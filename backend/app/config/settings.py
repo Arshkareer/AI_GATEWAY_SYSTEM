@@ -54,6 +54,23 @@ class Settings(BaseSettings):
     DEFAULT_CURRENCY: str = "USD"
     COST_CALCULATION_ENABLED: bool = True
     
+    # Notifications
+    SMTP_HOST: Optional[str] = None
+    SMTP_PORT: int = 587
+    SMTP_USERNAME: Optional[str] = None
+    SMTP_PASSWORD: Optional[str] = None
+    SMTP_FROM_EMAIL: Optional[str] = None
+    SMTP_TLS: bool = True
+    
+    WEBHOOK_URL: Optional[str] = None
+    SLACK_WEBHOOK_URL: Optional[str] = None
+    DISCORD_WEBHOOK_URL: Optional[str] = None
+    
+    # Monitoring & Alerting
+    ENABLE_ANOMALY_ALERTS: bool = True
+    ENABLE_BUDGET_ALERTS: bool = True
+    BUDGET_ALERT_THRESHOLDS: List[float] = [0.5, 0.8, 0.95, 1.0]
+    
     @validator("DATABASE_URL", pre=True)
     def assemble_db_connection(cls, v: Optional[str], values: dict) -> str:
         if isinstance(v, str):
